@@ -2,18 +2,29 @@
 const navbar = document.getElementById('navbar');
 const hero = document.getElementById('home');
 const navLinks = document.querySelectorAll('.nav-link');
-const hamburger = document.querySelector('.hamburger');
+const hamburger = document.getElementById('hamburger-menu') || document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
 // Funzione per gestire lo scroll della navbar
 function handleNavbarScroll() {
-    const heroBottom = hero.offsetTop + hero.offsetHeight;
     const scrollPosition = window.scrollY;
+    const heroHeight = hero.offsetHeight;
+    const heroBottom = hero.offsetTop + heroHeight;
 
-    if (scrollPosition > heroBottom - 100) {
-        navbar.classList.add('scrolled');
-    } else {
+    // Se siamo all'inizio della pagina (nella hero section), la navbar è invisibile
+    if (scrollPosition < 50) {
         navbar.classList.remove('scrolled');
+        navbar.classList.remove('visible');
+    } 
+    // Quando usciamo completamente dalla hero section, la navbar diventa bianca e visibile
+    else if (scrollPosition >= heroBottom - 80) {
+        navbar.classList.add('scrolled');
+        navbar.classList.add('visible');
+    }
+    // Durante lo scroll nella hero (ma non all'inizio), mostra la navbar trasparente
+    else {
+        navbar.classList.remove('scrolled');
+        navbar.classList.add('visible');
     }
 }
 
@@ -33,17 +44,23 @@ navLinks.forEach(link => {
             
             // Chiudi il menu mobile se aperto
             navMenu.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            const spans = hamburger.querySelectorAll('span');
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
         }
     });
 });
 
 // Hamburger menu toggle
 hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
+    const isActive = navMenu.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isActive);
     
     // Anima le linee dell'hamburger
     const spans = hamburger.querySelectorAll('span');
-    if (navMenu.classList.contains('active')) {
+    if (isActive) {
         spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
         spans[1].style.opacity = '0';
         spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
@@ -58,6 +75,7 @@ hamburger.addEventListener('click', () => {
 document.addEventListener('click', (e) => {
     if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
         navMenu.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
         const spans = hamburger.querySelectorAll('span');
         spans[0].style.transform = 'none';
         spans[1].style.opacity = '1';

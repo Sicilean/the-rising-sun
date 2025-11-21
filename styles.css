@@ -45,12 +45,21 @@ body {
     z-index: 1000;
     transition: var(--transition);
     padding: 1rem 0;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.navbar.visible {
+    opacity: 1;
+    visibility: visible;
 }
 
 .navbar.scrolled {
     background: var(--white);
     box-shadow: var(--shadow);
     padding: 0.5rem 0;
+    opacity: 1;
+    visibility: visible;
 }
 
 .navbar.scrolled .nav-link {
@@ -59,6 +68,14 @@ body {
 
 .navbar.scrolled .nav-logo {
     color: var(--secondary-color);
+}
+
+.navbar.visible:not(.scrolled) .nav-link {
+    color: var(--white);
+}
+
+.navbar.visible:not(.scrolled) .nav-logo {
+    color: var(--white);
 }
 
 .nav-container {
@@ -111,6 +128,9 @@ body {
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
+    background: none;
+    border: none;
+    padding: 5px;
 }
 
 .hamburger span {
@@ -122,6 +142,10 @@ body {
 
 .navbar.scrolled .hamburger span {
     background: var(--text-dark);
+}
+
+.navbar.visible:not(.scrolled) .hamburger span {
+    background: var(--white);
 }
 
 /* Hero Section */
