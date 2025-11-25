@@ -1,204 +1,227 @@
-// Navbar scroll behavior
+// ============================================
+// NavBar Scroll Effect
+// ============================================
 const navbar = document.getElementById('navbar');
-const hero = document.getElementById('home');
-const navLinks = document.querySelectorAll('.nav-link');
-const hamburger = document.getElementById('hamburger-menu') || document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+const heroSection = document.getElementById('home');
 
-// Funzione per gestire lo scroll della navbar
 function handleNavbarScroll() {
-    const scrollPosition = window.scrollY;
-    const heroHeight = hero.offsetHeight;
-    const heroBottom = hero.offsetTop + heroHeight;
+  const heroHeight = heroSection.offsetHeight;
+  const scrollPosition = window.scrollY;
 
-    // Se siamo all'inizio della pagina (nella hero section), la navbar è invisibile
-    if (scrollPosition < 50) {
-        navbar.classList.remove('scrolled');
-        navbar.classList.remove('visible');
-    } 
-    // Quando usciamo completamente dalla hero section, la navbar diventa bianca e visibile
-    else if (scrollPosition >= heroBottom - 80) {
-        navbar.classList.add('scrolled');
-        navbar.classList.add('visible');
-    }
-    // Durante lo scroll nella hero (ma non all'inizio), mostra la navbar trasparente
-    else {
-        navbar.classList.remove('scrolled');
-        navbar.classList.add('visible');
-    }
+  if (scrollPosition > heroHeight - 100) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
 }
 
-// Smooth scroll per i link di navigazione
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        if (targetSection) {
-            const offsetTop = targetSection.offsetTop - 80;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-            
-            // Chiudi il menu mobile se aperto
-            navMenu.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-            const spans = hamburger.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        }
-    });
-});
-
-// Hamburger menu toggle
-hamburger.addEventListener('click', () => {
-    const isActive = navMenu.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isActive);
-    
-    // Anima le linee dell'hamburger
-    const spans = hamburger.querySelectorAll('span');
-    if (isActive) {
-        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-    } else {
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-    }
-});
-
-// Chiudi il menu quando si clicca fuori
-document.addEventListener('click', (e) => {
-    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-        navMenu.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        const spans = hamburger.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-    }
-});
-
-// Event listener per lo scroll
 window.addEventListener('scroll', handleNavbarScroll);
 window.addEventListener('load', handleNavbarScroll);
 
-// Carosello loghi
-const carouselTrack = document.getElementById('carouselTrack');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-let currentIndex = 0;
-const totalItems = document.querySelectorAll('.carousel-item').length;
+// ============================================
+// Mobile Menu Toggle
+// ============================================
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+const navLinks = document.querySelectorAll('.nav-link');
 
-// Funzione per aggiornare la posizione del carosello
-function updateCarousel() {
-    const translateX = -currentIndex * 100;
-    carouselTrack.style.transform = `translateX(${translateX}%)`;
-}
-
-// Funzione per andare al prossimo slide
-function nextSlide() {
-    currentIndex = (currentIndex + 1) % totalItems;
-    updateCarousel();
-}
-
-// Funzione per andare al slide precedente
-function prevSlide() {
-    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-    updateCarousel();
-}
-
-// Event listeners per i pulsanti
-nextBtn.addEventListener('click', nextSlide);
-prevBtn.addEventListener('click', prevSlide);
-
-// Auto-play del carosello (opzionale)
-let carouselInterval = setInterval(nextSlide, 5000);
-
-// Pausa auto-play al hover
-const carouselContainer = document.querySelector('.carousel-container');
-carouselContainer.addEventListener('mouseenter', () => {
-    clearInterval(carouselInterval);
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
 });
 
-carouselContainer.addEventListener('mouseleave', () => {
-    carouselInterval = setInterval(nextSlide, 5000);
+// Close menu when clicking on a link
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+  });
 });
 
-// Animazioni al scroll (Intersection Observer)
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+  }
+});
+
+// ============================================
+// Smooth Scroll for Navigation Links
+// ============================================
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const targetSection = document.getElementById(targetId);
+      
+      if (targetSection) {
+        const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    }
+  });
+});
+
+// ============================================
+// Gallery Lightbox
+// ============================================
+const galleryItems = document.querySelectorAll('.gallery-item');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxClose = document.querySelector('.lightbox-close');
+const lightboxPrev = document.querySelector('.lightbox-prev');
+const lightboxNext = document.querySelector('.lightbox-next');
+
+let currentImageIndex = 0;
+const galleryImages = Array.from(galleryItems).map(item => {
+  return item.querySelector('img').src;
+});
+
+// Open lightbox
+galleryItems.forEach((item, index) => {
+  item.addEventListener('click', () => {
+    currentImageIndex = index;
+    updateLightboxImage();
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  });
+});
+
+// Close lightbox
+lightboxClose.addEventListener('click', () => {
+  closeLightbox();
+});
+
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (lightbox.classList.contains('active')) {
+    if (e.key === 'Escape') {
+      closeLightbox();
+    } else if (e.key === 'ArrowLeft') {
+      navigateLightbox('prev');
+    } else if (e.key === 'ArrowRight') {
+      navigateLightbox('next');
+    }
+  }
+});
+
+// Previous/Next navigation
+lightboxPrev.addEventListener('click', (e) => {
+  e.stopPropagation();
+  navigateLightbox('prev');
+});
+
+lightboxNext.addEventListener('click', (e) => {
+  e.stopPropagation();
+  navigateLightbox('next');
+});
+
+function navigateLightbox(direction) {
+  if (direction === 'prev') {
+    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+  } else {
+    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+  }
+  updateLightboxImage();
+}
+
+function updateLightboxImage() {
+  lightboxImg.src = galleryImages[currentImageIndex];
+  lightboxImg.alt = `Gallery immagine ${currentImageIndex + 1}`;
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = ''; // Restore scrolling
+}
+
+// ============================================
+// Intersection Observer for Animations
+// ============================================
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
 }, observerOptions);
 
-// Osserva gli elementi da animare
-const animateElements = document.querySelectorAll('.gallery-item, .punto-item, .features-list li');
+// Observe elements for fade-in animation
+const animateElements = document.querySelectorAll('.punto-forza, .gallery-item, .selinunte-content, .selinunte-image');
 animateElements.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
 });
 
-// Gestione immagini lazy loading (se necessario)
+// ============================================
+// Lazy Loading Enhancement
+// ============================================
 if ('loading' in HTMLImageElement.prototype) {
-    const images = document.querySelectorAll('img[loading="lazy"]');
-    images.forEach(img => {
-        img.src = img.dataset.src || img.src;
-    });
+  const images = document.querySelectorAll('img[loading="lazy"]');
+  images.forEach(img => {
+    img.src = img.dataset.src || img.src;
+  });
 } else {
-    // Fallback per browser che non supportano lazy loading
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
-    document.body.appendChild(script);
+  // Fallback for browsers that don't support lazy loading
+  const script = document.createElement('script');
+  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+  document.body.appendChild(script);
 }
 
-// Gestione errori immagini
-const images = document.querySelectorAll('img');
-images.forEach(img => {
-    img.addEventListener('error', function() {
-        this.src = 'https://via.placeholder.com/800x600?text=Immagine+non+disponibile';
-        this.alt = 'Immagine non disponibile';
-    });
-});
-
-// Aggiungi classe active al link di navigazione corrente durante lo scroll
-function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollPosition = window.scrollY + 150;
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            navLinks.forEach(link => link.classList.remove('active'));
-            if (navLink) {
-                navLink.classList.add('active');
-            }
-        }
-    });
+// ============================================
+// WhatsApp Link Handler
+// ============================================
+const whatsappLink = document.querySelector('.whatsapp-link');
+if (whatsappLink) {
+  whatsappLink.addEventListener('click', (e) => {
+    // The link should be properly formatted in HTML
+    // This is just for tracking/analytics if needed
+    console.log('WhatsApp link clicked');
+  });
 }
 
-window.addEventListener('scroll', updateActiveNavLink);
+// ============================================
+// Performance Optimization
+// ============================================
+// Throttle scroll events
+let ticking = false;
 
-// Inizializza
-document.addEventListener('DOMContentLoaded', () => {
-    handleNavbarScroll();
-    updateActiveNavLink();
+function optimizedScroll() {
+  handleNavbarScroll();
+  ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(optimizedScroll);
+    ticking = true;
+  }
 });
+
+// ============================================
+// Console Message
+// ============================================
+console.log('%cThe Rising Sun', 'color: #1c8791; font-size: 24px; font-weight: bold;');
+console.log('%cSviluppato da Sicilean', 'color: #189db3; font-size: 14px;');
+console.log('%chttps://www.sicilean.tech', 'color: #73c2cd; font-size: 12px;');
