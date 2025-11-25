@@ -190,14 +190,14 @@ if ('loading' in HTMLImageElement.prototype) {
 }
 
 // ============================================
-// WhatsApp Link Handler
+// WhatsApp Floating Button Handler
 // ============================================
-const whatsappLink = document.querySelector('.whatsapp-link');
-if (whatsappLink) {
-  whatsappLink.addEventListener('click', (e) => {
+const whatsappFloat = document.querySelector('.whatsapp-float');
+if (whatsappFloat) {
+  whatsappFloat.addEventListener('click', (e) => {
     // The link should be properly formatted in HTML
     // This is just for tracking/analytics if needed
-    console.log('WhatsApp link clicked');
+    console.log('WhatsApp floating button clicked');
   });
 }
 

@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="The Rising Sun - La tua casa lontano da casa a Marinella. Casa vacanza a uso esclusivo in Sicilia con giardino, terrazza e vista mare.">
     <title>The Rising Sun - Casa Vacanza a Marinella</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- NavBar -->
     <nav id="navbar" class="navbar">
         <div class="nav-container">
-            <a href="#home" class="nav-logo">The Rising Sun</a>
+            <a href="#home" class="nav-logo">
+                <img src="public/logo_the_rising_sun.svg" alt="The Rising Sun" class="logo-img">
+            </a>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#prenota" class="nav-link">Prenota</a></li>
@@ -219,35 +224,49 @@
     <!-- Footer -->
     <footer id="contatti" class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>The Rising Sun</h3>
-                    <p>La tua casa lontano da casa a Marinella</p>
-                    <p>Casa vacanza a uso esclusivo con giardino, terrazza e vista mare</p>
+            <div class="footer-main">
+                <div class="footer-left">
+                    <div class="footer-logo-wrapper">
+                        <img src="public/logo_orizzontale_the_rising_sun.svg" alt="The Rising Sun" class="footer-logo">
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h3>Contatti</h3>
-                    <a href="https://wa.me/393XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
-                        <span class="whatsapp-icon">💬</span>
-                        Contattaci su WhatsApp
-                    </a>
-                    <p class="footer-note">Sostituisci XXXXXXXXX con il numero di telefono reale</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Prenota</h3>
+                <div class="footer-center">
+                    <h3 class="footer-prenota-title">Prenota</h3>
                     <div class="footer-booking-links">
                         <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer">Booking.com</a>
                         <a href="https://www.airbnb.it" target="_blank" rel="noopener noreferrer">Airbnb</a>
                         <a href="https://www.skyscanner.it" target="_blank" rel="noopener noreferrer">SkyScanner</a>
                     </div>
                 </div>
+                <div class="footer-right">
+                    <h3 class="footer-contacts-title">Contatti</h3>
+                    <div class="footer-contacts">
+                        <p>La tua casa lontano da casa a Marinella</p>
+                        <p>Casa vacanza a uso esclusivo con giardino, terrazza e vista mare</p>
+                    </div>
+                </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 The Rising Sun. Tutti i diritti riservati.</p>
-                <p class="footer-credits-left"><img src="public/Logo_SIcilean.svg" alt="Sicilean" class="sicilean-logo"> Powered by <a href="https://www.sicilean.tech" target="_blank" rel="noopener noreferrer">Sicilean</a></p>
+                <div class="footer-bottom-left">
+                    <span>Powered by</span>
+                    <img src="public/Logo_SIcilean.svg" alt="Sicilean" class="sicilean-logo">
+                    <a href="https://www.sicilean.tech" target="_blank" rel="noopener noreferrer">Sicilean</a>
+                </div>
+                <div class="footer-bottom-right">
+                    <a href="#privacy" class="footer-policy-link">Privacy Policy</a>
+                    <a href="#cookie" class="footer-policy-link">Cookie Policy</a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/393XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Contattaci su WhatsApp">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0C7.164 0 0 7.164 0 16c0 2.82.74 5.46 2.03 7.75L0 32l8.5-2.03C10.75 31.3 13.3 32 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0z" fill="#25D366"/>
+            <path d="M24.5 19.22c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.34.22-.63.07-.3-.15-1.26-.46-2.4-1.46-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.8.35-.27.27-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.48.7.3 1.25.49 1.68.63.7.22 1.34.19 1.84.12.55-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.3-.2-.6-.35z" fill="#FFF"/>
+        </svg>
+    </a>
 
     <script src="script.js"></script>
 </body>
