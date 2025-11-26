@@ -1,48 +1,44 @@
 // ============================================
-// NavBar Scroll Effect
-// ============================================
-const navbar = document.getElementById('navbar');
-const heroSection = document.getElementById('home');
-
-function handleNavbarScroll() {
-  const heroHeight = heroSection.offsetHeight;
-  const scrollPosition = window.scrollY;
-
-  if (scrollPosition > heroHeight - 100) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-}
-
-window.addEventListener('scroll', handleNavbarScroll);
-window.addEventListener('load', handleNavbarScroll);
-
-// ============================================
 // Mobile Menu Toggle
 // ============================================
 const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+const navMenuLeft = document.querySelector('.nav-menu-left');
+const navMenuRight = document.querySelector('.nav-menu-right');
 const navLinks = document.querySelectorAll('.nav-link');
 
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
-  navMenu.classList.toggle('active');
+  navMenuLeft.classList.toggle('active');
+  navMenuRight.classList.toggle('active');
+  
+  // Nel mobile, posiziona menu-right subito dopo menu-left
+  if (window.innerWidth <= 968) {
+    if (navMenuLeft.classList.contains('active') && navMenuRight.classList.contains('active')) {
+      const menuLeftHeight = navMenuLeft.offsetHeight;
+      navMenuRight.style.top = `${70 + menuLeftHeight}px`;
+    } else {
+      navMenuRight.style.top = '70px';
+    }
+  }
 });
 
 // Close menu when clicking on a link
 navLinks.forEach(link => {
   link.addEventListener('click', () => {
     hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
+    navMenuLeft.classList.remove('active');
+    navMenuRight.classList.remove('active');
   });
 });
 
 // Close menu when clicking outside
 document.addEventListener('click', (e) => {
-  if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+  if (!hamburger.contains(e.target) && 
+      !navMenuLeft.contains(e.target) && 
+      !navMenuRight.contains(e.target)) {
     hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
+    navMenuLeft.classList.remove('active');
+    navMenuRight.classList.remove('active');
   }
 });
 
@@ -204,20 +200,7 @@ if (whatsappFloat) {
 // ============================================
 // Performance Optimization
 // ============================================
-// Throttle scroll events
-let ticking = false;
-
-function optimizedScroll() {
-  handleNavbarScroll();
-  ticking = false;
-}
-
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    window.requestAnimationFrame(optimizedScroll);
-    ticking = true;
-  }
-});
+// (Scroll optimization removed as navbar is always white)
 
 // ============================================
 // Console Message

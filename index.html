@@ -14,13 +14,17 @@
     <!-- NavBar -->
     <nav id="navbar" class="navbar">
         <div class="nav-container">
-            <a href="#home" class="nav-logo">
-                <img src="public/logo_the_rising_sun.svg" alt="The Rising Sun" class="logo-img">
-            </a>
-            <ul class="nav-menu">
+            <ul class="nav-menu nav-menu-left">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#prenota" class="nav-link">Prenota</a></li>
                 <li><a href="#punti-forza" class="nav-link">Punti Forza</a></li>
+            </ul>
+            <div class="nav-logo-wrapper">
+                <a href="#home" class="nav-logo">
+                    <img src="public/logo_the_rising_sun.svg" alt="The Rising Sun" class="logo-img">
+                </a>
+            </div>
+            <ul class="nav-menu nav-menu-right">
                 <li><a href="#gallery" class="nav-link">Gallery</a></li>
                 <li><a href="#selinunte" class="nav-link">Selinunte</a></li>
                 <li><a href="#contatti" class="nav-link">Contatti</a></li>
@@ -42,16 +46,53 @@
         </div>
     </section>
 
+    <!-- Separator Wave -->
+    <div class="wave-separator wave-separator-inverted">
+        <svg class="editorial" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax1">
+                <use xlink:href="#gentle-wave" x="50" y="3" fill="var(--colore-quaternario-chiaro)"/>
+            </g>
+            <g class="parallax2">
+                <use xlink:href="#gentle-wave" x="50" y="0" fill="var(--colore-primario-chiaro)"/>
+            </g>
+            <g class="parallax3">
+                <use xlink:href="#gentle-wave" x="50" y="9" fill="var(--colore-primario-scuro)"/>
+            </g>
+            <g class="parallax4">
+                <use xlink:href="#gentle-wave" x="50" y="6" fill="var(--white)"/>
+            </g>
+        </svg>
+    </div>
+
     <!-- Snippet Holidu -->
     <section id="holidu" class="holidu-section">
         <div class="container">
             <h2 class="section-title">Prenota con Holidu</h2>
             <div class="holidu-snippet">
-                <!-- Lo snippet di Holidu verrà inserito qui -->
-                <p class="placeholder-text">Snippet Holidu - Inserire qui il codice fornito</p>
-            </div>
+                <div style="width: 100%; max-width: 1280px; margin: 0 auto;">
+                    <iframe
+                      id="host-websites-booking-module"
+                      style="aspect-ratio: 1280 / 1000; width: 100%; min-height: 500px; height: 500px; border: none;"
+                      src="https://widget.holiduhost.com/widget/82d0a303-294f-4162-8232-871c9a3e5938">
+                    </iframe>
+                  </div>
+                  <script>
+                    window.addEventListener('message', function(event) {
+                      if (event.data.type === 'resize') {
+                        const iframe = document.getElementById('host-websites-booking-module');
+                        if (iframe) {
+                          iframe.style.height = event.data.height + 'px';
+                        }
+                      }
+                    });
+                  </script>
         </div>
     </section>
+
+
 
     <!-- Sezione Prenota -->
     <section id="prenota" class="prenota-section">
@@ -72,43 +113,67 @@
         </div>
     </section>
 
+
     <!-- Sezione Mappa e Punti Forza -->
     <section id="punti-forza" class="mappa-punti-section">
         <div class="container">
             <div class="mappa-punti-grid">
                 <div class="punti-forza">
-                    <h2 class="section-title">Perché scegliere The Rising Sun</h2>
+                    <h2 class="section-title section-title-small">Perché scegliere The Rising Sun</h2>
                     <div class="punti-forza-list">
                         <div class="punto-forza">
-                            <div class="punto-icon">🏠</div>
+                            <div class="punto-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                             <div class="punto-content">
                                 <h3>Accoglienza</h3>
                                 <p>Ti mettiamo al centro, facendoti sentire benvenuto e a tuo agio fin dal primo contatto. Risposta rapida ai messaggi, informazioni chiare e piccoli gesti di cortesia personalizzati.</p>
                             </div>
                         </div>
                         <div class="punto-forza">
-                            <div class="punto-icon">🔒</div>
+                            <div class="punto-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M7 11V7C7 5.67392 7.52678 4.40215 8.46447 3.46447C9.40215 2.52678 10.6739 2 12 2C13.3261 2 14.5979 2.52678 15.5355 3.46447C16.4732 4.40215 17 5.67392 17 7V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                             <div class="punto-content">
                                 <h3>Comfort e Privacy</h3>
                                 <p>Casa interamente a tua disposizione, nessun altro ospite. Ambienti puliti e ordinati, giardino e terrazza dove rilassarti in totale tranquillità.</p>
                             </div>
                         </div>
                         <div class="punto-forza">
-                            <div class="punto-icon">✅</div>
+                            <div class="punto-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                             <div class="punto-content">
                                 <h3>Affidabilità</h3>
                                 <p>Manteniamo ciò che promettiamo. Check-in e check-out gestiti in orario, casa trovata esattamente come descritta, host facilmente raggiungibile.</p>
                             </div>
                         </div>
                         <div class="punto-forza">
-                            <div class="punto-icon">🍋</div>
+                            <div class="punto-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                             <div class="punto-content">
                                 <h3>Autenticità Siciliana</h3>
                                 <p>Ti facciamo respirare l'atmosfera vera di Marinella e della Sicilia occidentale. Consigli su ristoranti locali, spiagge meno turistiche e luoghi tipici da visitare.</p>
                             </div>
                         </div>
                         <div class="punto-forza">
-                            <div class="punto-icon">✨</div>
+                            <div class="punto-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                             <div class="punto-content">
                                 <h3>Semplicità e No Stress</h3>
                                 <p>Rendiamo semplice ogni fase del soggiorno. Istruzioni chiare per l'accesso, informazioni pratiche già pronte, comunicazione essenziale ma completa.</p>
@@ -117,7 +182,7 @@
                     </div>
                 </div>
                 <div class="mappa-container">
-                    <h2 class="section-title">Dove siamo</h2>
+                    <h2 class="section-title section-title-small">Dove siamo</h2>
                     <div class="mappa-wrapper">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.5!2d12.8!3d37.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDM2JzAwLjAiTiAxMsKwNDgnMDAuMCJF!5e0!3m2!1sit!2sit!4v1234567890" 
@@ -134,64 +199,145 @@
             </div>
         </div>
     </section>
+        <!-- Separator Wave -->
+        <div class="wave-separator wave-separator-inverted">
+            <svg class="editorial" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax1">
+                    <use xlink:href="#gentle-wave" x="50" y="3" fill="var(--colore-quaternario-chiaro)"/>
+                </g>
+                <g class="parallax2">
+                    <use xlink:href="#gentle-wave" x="50" y="0" fill="var(--colore-primario-chiaro)"/>
+                </g>
+                <g class="parallax3">
+                    <use xlink:href="#gentle-wave" x="50" y="9" fill="var(--colore-primario-scuro)"/>
+                </g>
+                <g class="parallax4">
+                    <use xlink:href="#gentle-wave" x="50" y="6" fill="#AFDDE6"/>
+                </g>
+            </svg>
+        </div>
 
     <!-- Gallery Section -->
     <section id="gallery" class="gallery-section">
         <div class="container">
             <h2 class="section-title">Gallery</h2>
             <p class="section-subtitle">Scopri gli spazi di The Rising Sun</p>
-            <div class="gallery-grid">
-                <div class="gallery-item" data-index="0">
-                    <img src="https://via.placeholder.com/600x400/1c8791/ffffff?text=Immagine+1" alt="Gallery immagine 1" loading="lazy">
+            <div class="gridywrap">
+                <div class="gallery-item gridy-2 gridyhe-1" data-index="0">
+                    <div class="gridimg">
+                        <img src="public/foto/l.avif" alt="Gallery immagine 1" loading="lazy">
+                    </div>
                     <div class="gallery-overlay">
-                        <span class="gallery-icon">🔍</span>
+                        <svg class="gallery-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                 </div>
-                <div class="gallery-item tall" data-index="1">
-                    <img src="https://via.placeholder.com/400x600/189db3/ffffff?text=Immagine+2" alt="Gallery immagine 2" loading="lazy">
+                <div class="gallery-item gridy-1 gridyhe-1" data-index="1">
+                    <div class="gridimg">
+                        <img src="public/foto/l (1).avif" alt="Gallery immagine 2" loading="lazy">
+                    </div>
                     <div class="gallery-overlay">
-                        <span class="gallery-icon">🔍</span>
+                        <svg class="gallery-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                 </div>
-                <div class="gallery-item" data-index="2">
-                    <img src="https://via.placeholder.com/600x400/9eccc2/ffffff?text=Immagine+3" alt="Gallery immagine 3" loading="lazy">
+                <div class="gallery-item gridy-1 gridyhe-2" data-index="2">
+                    <div class="gridimg">
+                        <img src="public/foto/l (2).avif" alt="Gallery immagine 3" loading="lazy">
+                    </div>
                     <div class="gallery-overlay">
-                        <span class="gallery-icon">🔍</span>
+                        <svg class="gallery-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                 </div>
-                <div class="gallery-item wide" data-index="3">
-                    <img src="https://via.placeholder.com/800x400/c1dfd6/ffffff?text=Immagine+4" alt="Gallery immagine 4" loading="lazy">
+                <div class="gallery-item gridy-2 gridyhe-1" data-index="3">
+                    <div class="gridimg">
+                        <img src="public/foto/l (3).avif" alt="Gallery immagine 4" loading="lazy">
+                    </div>
                     <div class="gallery-overlay">
-                        <span class="gallery-icon">🔍</span>
+                        <svg class="gallery-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                 </div>
-                <div class="gallery-item" data-index="4">
-                    <img src="https://via.placeholder.com/600x400/fedaa1/ffffff?text=Immagine+5" alt="Gallery immagine 5" loading="lazy">
+                <div class="gallery-item gridy-1 gridyhe-1" data-index="4">
+                    <div class="gridimg">
+                        <img src="public/foto/l (4).avif" alt="Gallery immagine 5" loading="lazy">
+                    </div>
                     <div class="gallery-overlay">
-                        <span class="gallery-icon">🔍</span>
+                        <svg class="gallery-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                 </div>
-                <div class="gallery-item tall" data-index="5">
-                    <img src="https://via.placeholder.com/400x600/8fd0dc/ffffff?text=Immagine+6" alt="Gallery immagine 6" loading="lazy">
+                <div class="gallery-item gridy-1 gridyhe-1" data-index="5">
+                    <div class="gridimg">
+                        <img src="public/foto/l (5).avif" alt="Gallery immagine 6" loading="lazy">
+                    </div>
                     <div class="gallery-overlay">
-                        <span class="gallery-icon">🔍</span>
+                        <svg class="gallery-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                 </div>
-                <div class="gallery-item" data-index="6">
-                    <img src="https://via.placeholder.com/600x400/73c2cd/ffffff?text=Immagine+7" alt="Gallery immagine 7" loading="lazy">
+                <div class="gallery-item gridy-1 gridyhe-1" data-index="6">
+                    <div class="gridimg">
+                        <img src="public/foto/l (6).avif" alt="Gallery immagine 7" loading="lazy">
+                    </div>
                     <div class="gallery-overlay">
-                        <span class="gallery-icon">🔍</span>
+                        <svg class="gallery-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                 </div>
-                <div class="gallery-item" data-index="7">
-                    <img src="https://via.placeholder.com/600x400/ffef26/000000?text=Immagine+8" alt="Gallery immagine 8" loading="lazy">
+                <div class="gallery-item gridy-2 gridyhe-1" data-index="7">
+                    <div class="gridimg">
+                        <img src="public/foto/l.avif" alt="Gallery immagine 8" loading="lazy">
+                    </div>
                     <div class="gallery-overlay">
-                        <span class="gallery-icon">🔍</span>
+                        <svg class="gallery-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Separator Wave -->
+    <div class="wave-separator wave-separator-inverted">
+        <svg class="editorial" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax1">
+                <use xlink:href="#gentle-wave" x="50" y="3" fill="var(--colore-quaternario-chiaro)"/>
+            </g>
+            <g class="parallax2">
+                <use xlink:href="#gentle-wave" x="50" y="0" fill="var(--colore-primario-chiaro)"/>
+            </g>
+            <g class="parallax3">
+                <use xlink:href="#gentle-wave" x="50" y="9" fill="var(--colore-primario-scuro)"/>
+            </g>
+            <g class="parallax4">
+                <use xlink:href="#gentle-wave" x="50" y="6" fill="var(--white)"/>
+            </g>
+        </svg>
+    </div>
 
     <!-- Lightbox per Gallery -->
     <div id="lightbox" class="lightbox">
@@ -215,7 +361,7 @@
                     <p>The Rising Sun è il punto di partenza ideale per esplorare questa meraviglia storica e naturale, offrendoti un rifugio confortevole dove tornare dopo le tue avventure.</p>
                 </div>
                 <div class="selinunte-image">
-                    <img src="https://via.placeholder.com/800x600/1c8791/ffffff?text=Selinunte" alt="Selinunte - Parco Archeologico" loading="lazy">
+                    <img src="public/foto/ancient-amphitheatre.jpg" alt="Selinunte - Parco Archeologico" loading="lazy">
                 </div>
             </div>
         </div>
@@ -253,8 +399,8 @@
                     <a href="https://www.sicilean.tech" target="_blank" rel="noopener noreferrer">Sicilean</a>
                 </div>
                 <div class="footer-bottom-right">
-                    <a href="#privacy" class="footer-policy-link">Privacy Policy</a>
-                    <a href="#cookie" class="footer-policy-link">Cookie Policy</a>
+                    <a href="privacy.html" class="footer-policy-link">Privacy Policy</a>
+                    <a href="cookie.html" class="footer-policy-link">Cookie Policy</a>
                 </div>
             </div>
         </div>
@@ -262,9 +408,15 @@
 
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/393XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Contattaci su WhatsApp">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 0C7.164 0 0 7.164 0 16c0 2.82.74 5.46 2.03 7.75L0 32l8.5-2.03C10.75 31.3 13.3 32 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0z" fill="#25D366"/>
-            <path d="M24.5 19.22c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.34.22-.63.07-.3-.15-1.26-.46-2.4-1.46-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.8.35-.27.27-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.48.7.3 1.25.49 1.68.63.7.22 1.34.19 1.84.12.55-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.3-.2-.6-.35z" fill="#FFF"/>
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.14-1.475-.883-1.012-1.48-2.262-1.653-2.561-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.3 1.262.49 1.694.627.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.426.248-.707.248-1.388.173-1.388z" fill="#ffffff"/>
+        </svg>
+    </a>
+
+    <!-- Cookie Floating Button -->
+    <a href="cookie.html" class="cookie-float" aria-label="Gestisci i Cookie">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 16H9.01M12 11H12.01M7 10H7.01M15 16H15.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C12 5.76142 13.7909 8 16 8C16 10.2091 18.2386 12 21 12Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </a>
 
