@@ -107,7 +107,7 @@ ul {
   background-color: var(--white);
   box-shadow: 0 2px 10px var(--shadow);
   transition: var(--transition);
-  padding: 1.5rem 0;
+  padding: 0.5rem 0;
 }
 
 .nav-container {
@@ -133,22 +133,6 @@ ul {
 
 .nav-menu-right {
   justify-content: flex-end;
-}
-
-.nav-logo-wrapper {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 120px;
-  height: 120px;
-  background: white;
-  border-radius: 40%;
-  padding: 10px;
-  z-index: 10;
-  margin-top: 30px;
 }
 
 .nav-logo {
@@ -292,12 +276,10 @@ ul {
   transition: var(--transition);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 15px var(--shadow);
 }
 
 .booking-logo:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 20px var(--shadow-hover);
 }
 
 .booking-logo img {
